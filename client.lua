@@ -2,16 +2,7 @@ local coreLoaded = false
 local nuiFocus = false
 local tab = 0
 local PlayerData = {}
-ESX = nil
-Citizen.CreateThread(function()
-	while ESX == nil do
-		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-		Citizen.Wait(100)
-	end
-    coreLoaded = true
-	while ESX.GetPlayerData().job == nil do Citizen.Wait(100) end
-    firstLogin()
-end)
+ESX = exports["es_extended"]:getSharedObject()
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function()
